@@ -23,77 +23,82 @@ interface Item {
 
 const HomeScreen = () => {
 
-    // const data: Item[] = [
-    //     { id: '1', title: "item1" },
-    //     { id: '2', title: "item2" },
-    //     { id: '3', title: "item3" },
-    //     { id: '4', title: "item4" },
-    //     { id: '5', title: "item5" },
-    //     { id: '6', title: "item6" },
-    //     { id: '7', title: "item7" },
-    // ]
     const data: Item[] = [
+        { id: '1', title: "item1" },
+        { id: '2', title: "item2" },
+        { id: '3', title: "item3" },
+        { id: '4', title: "item4" },
+        { id: '5', title: "item5" },
+        { id: '6', title: "item6" },
+        { id: '7', title: "item7" },
     ]
+    // const data: Item[] = [
+    // ]
 
     const [interval, setInterv] = useState(0);
-    const [text, setText]=useState('')
+    const [text, setText] = useState('')
 
     return (
         /**
         
         <div>Text</div>
          */
-        // <ScrollView>
+        <ScrollView>
             <View style={styles.mainContainer}>
                 <Text style={styles.welcomeText}>Welcome to React Native</Text>
                 <View style={styles.containerBase}>
+                    <Text style={styles.headerText}>Buttons</Text>
+
+                    <Button
+                        title="Button(Android)"
+                        color="#722b48"
+                        onPress={() => Alert.alert('Warning⚠️', 'You tapped this button', [
+                            {
+                                text: 'Ok',
+                                onPress: () => ToastAndroid.showWithGravityAndOffset("You select: OK", ToastAndroid.LONG, ToastAndroid.BOTTOM, 1, 2),
+                                style: 'default'
+                            },
+                            {
+                                text: 'Cancel',
+                                onPress: () => ToastAndroid.show("You pressed: CANCEL", ToastAndroid.LONG),
+                                style: 'cancel'
+                            }
+                        ])}
+                    />
+                    <TouchableOpacity style={styles.touchable} touchSoundDisabled={true} onPress={() => console.log("Touchable press")}
+                        onLongPress={() => setInterv(
+                            setInterval(() => console.log("Button still pressed"), 1000)
+                        )}
+                        onPressOut={() => interval !== 0 ? clearInterval(interval) : console.log()}
+                    >
+                        <Text style={styles.touchableText}>Touchable</Text>
+                        {/* <Button title="Button in button"
+                    color="#ad8a18"
+                    onPress={()=>console.log("Button in button")}
+                />  */}
+                    </TouchableOpacity>
+
+                    <Pressable style={({ pressed }) => [
+                        styles.pressableBase,
+                        pressed ? styles.pressablePressed : styles.presableDefault
+                    ]} onPress={() => console.log("Pressable was tapped")}>
+                        <Text style={styles.touchableText}>Pressable</Text>
+                    </Pressable>
+                </View>
+                <View style={styles.containerBase}>
+                     <Text style={styles.headerText}>Inputs</Text>
                     <TextInput
-                    style={styles.input}
+                        style={styles.input}
                         placeholder="Type something"
                         onChangeText={setText}
                         value={text}
                         placeholderTextColor="#999"
                     />
-                    <Text style={{color:'gray', fontSize:16}}>&gt; {text}</Text>
+                    <Text style={{ color: 'gray', fontSize: 16 }}>&gt; {text}</Text>
 
                 </View>
-                <Button
-                    title="Button(Android)"
-                    color="#722b48"
-                    onPress={() => Alert.alert('Warning⚠️', 'You tapped this button', [
-                        {
-                            text: 'Ok',
-                            onPress: () => ToastAndroid.showWithGravityAndOffset("You select: OK", ToastAndroid.LONG, ToastAndroid.BOTTOM, 1, 2),
-                            style: 'default'
-                        },
-                        {
-                            text: 'Cancel',
-                            onPress: () => ToastAndroid.show("You pressed: CANCEL", ToastAndroid.LONG),
-                            style: 'cancel'
-                        }
-                    ])}
-                />
-                <TouchableOpacity style={styles.touchable} touchSoundDisabled={true} onPress={() => console.log("Touchable press")}
-                    onLongPress={() => setInterv(
-                        setInterval(() => console.log("Button still pressed"), 1000)
-                    )}
-                    onPressOut={() => interval !== 0 ? clearInterval(interval) : console.log()}
-                >
-                    <Text style={styles.touchableText}>Touchable</Text>
-                    {/* <Button title="Button in button"
-                    color="#ad8a18"
-                    onPress={()=>console.log("Button in button")}
-                />  */}
-                </TouchableOpacity>
-
-                <Pressable style={({ pressed }) => [
-                    styles.pressableBase,
-                    pressed ? styles.pressablePressed : styles.presableDefault
-                ]} onPress={() => console.log("Pressable was tapped")}>
-                    <Text style={styles.touchableText}>Pressable1</Text>
-                </Pressable>
-
                 <View style={styles.flexContainer}>
+                    <Text style={styles.headerText}>Flex</Text>
                     {Array.from({ length: 48 }, (_, i) => i).map((v, i) => (
                         <View key={i} style={styles.card}>
                             <Text style={{
@@ -124,7 +129,8 @@ const HomeScreen = () => {
                 </View> */}
                 </View>
 
-                <View style={styles.flexContainer}>
+                <View style={styles.containerBase}>
+                     <Text style={styles.headerText}>Flat list</Text>
                     <FlatList
                         data={data}
                         keyExtractor={item => item.id}
@@ -133,27 +139,36 @@ const HomeScreen = () => {
                                 <Text style={styles.listItemText}>{item.title}</Text>
                             </View>
                         )}
+                        scrollEnabled={false}
                         ListEmptyComponent={
                             <Text
                                 style={{
-                                    textAlign:'center',
-                                    marginTop:50,
-                                    color:'#8e8e93',
+                                    textAlign: 'center',
+                                    marginTop: 50,
+                                    color: '#8e8e93',
                                     fontSize: 16
                                 }}
                             >List is empty</Text>
                         }
                     />
                 </View>
-                
+
             </View>
-        // </ScrollView>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
-    input:{
-        height:50,
+    headerText:{
+        textAlign: 'center',
+        marginVertical: 10,
+        fontSize: 20,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        color: '#424242'
+    },
+    input: {
+        height: 50,
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 8,
@@ -174,7 +189,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         padding: 5
     },
-    containerBase:{
+    containerBase: {
         backgroundColor: "#fff",
         padding: 5,
         margin: 5,
