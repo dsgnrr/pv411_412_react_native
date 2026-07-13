@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const TabLayout = () => {
     return (
@@ -20,6 +21,12 @@ const TabLayout = () => {
                 options={{
                     title: 'Lists',
                     tabBarIcon: ({ color }) => <FontAwesome name="list" size={24} color={color} />
+                }}
+            />
+            <Tabs.Screen name="media"
+                options={{
+                    title: 'Media',
+                    tabBarIcon: ({ color }) => <MaterialCommunityIcons name="multimedia" size={24} color={color} />
                 }}
             />
         </Tabs>
