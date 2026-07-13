@@ -29,6 +29,12 @@ const TabLayout = () => {
                     tabBarIcon: ({ color }) => <MaterialCommunityIcons name="multimedia" size={24} color={color} />
                 }}
             />
+            <Tabs.Screen name="animation"
+                options={{
+                    title: 'Animation',
+                    tabBarIcon: ({ color }) => <MaterialCommunityIcons name="animation" size={24} color={color} />
+                }}
+            />
         </Tabs>
     )
 }
