@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { View, Text, ScrollView, StyleSheet, SectionList, Image } from "react-native"
 import { Dropdown } from 'react-native-element-dropdown'
 import Checkbox from "expo-checkbox"
-
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 interface Item {
@@ -59,72 +59,75 @@ const ListScreen = () => {
         },
     ]
     return (
-        <ScrollView>
-            <Container style={{
-                height: 250
-            }}>
-                <Image style={styles.image} source={require('../../../assets/images/tutorial-web.png')}/>
-            </Container>
-            <Container>
-                <View style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    gap: 10
-                }}>
-                    <Checkbox value={checked} onValueChange={value=>{
-                        setChecked(value)
-                        console.log("Checkbox: ", value)
-                    }} color={checked ? "#722b48" : undefined} />
-                    <Text style={styles.label}>I agree with Terms</Text>
-                </View>
+        <SafeAreaView>
+            <ScrollView>
 
-            </Container>
-            <Container>
-                <Text style={styles.label}>Select option:</Text>
-                <Dropdown
-                    style={[styles.dropdown, isFocus && {
-                        borderLeftColor: "#3d1324",
-                        borderTopColor: "#3d1324",
-                    }]}
-                    placeholderStyle={styles.placeholderText}
-                    selectedTextStyle={styles.selectedText}
-                    placeholder={!isFocus ? "Select item" : "..."}
-                    data={dropDownData}
-                    labelField={"label"}
-                    valueField={"value"}
-                    value={value}
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => setIsFocus(false)}
-                    onChange={item => {
-                        setValue(item.value);
-                        setIsFocus(false)
-                        console.log(item.value)
-                    }}
-                />
-            </Container>
-            <Container>
-                <SectionList
-                    sections={data}
-                    scrollEnabled={false}
-                    renderItem={({ item }) => (
-                        <View style={styles.itemRow}>
-                            <Text style={styles.itemText}>{item}</Text>
-                        </View>
-                    )}
-                    renderSectionHeader={({ section: { title } }) => (
-                        <View style={styles.headerRow}>
-                            <Text style={styles.headerText}>{title}</Text>
-                        </View>
-                    )}
-                    keyExtractor={(item, index) => item + index}
-                />
-            </Container>
-        </ScrollView>
+                <Container style={{
+                    height: 250
+                }}>
+                    <Image style={styles.image} source={require('../../../assets/images/tutorial-web.png')} />
+                </Container>
+                <Container>
+                    <View style={{
+                        flex: 1,
+                        flexDirection: "row",
+                        gap: 10
+                    }}>
+                        <Checkbox value={checked} onValueChange={value => {
+                            setChecked(value)
+                            console.log("Checkbox: ", value)
+                        }} color={checked ? "#722b48" : undefined} />
+                        <Text style={styles.label}>I agree with Terms</Text>
+                    </View>
+
+                </Container>
+                <Container>
+                    <Text style={styles.label}>Select option:</Text>
+                    <Dropdown
+                        style={[styles.dropdown, isFocus && {
+                            borderLeftColor: "#3d1324",
+                            borderTopColor: "#3d1324",
+                        }]}
+                        placeholderStyle={styles.placeholderText}
+                        selectedTextStyle={styles.selectedText}
+                        placeholder={!isFocus ? "Select item" : "..."}
+                        data={dropDownData}
+                        labelField={"label"}
+                        valueField={"value"}
+                        value={value}
+                        onFocus={() => setIsFocus(true)}
+                        onBlur={() => setIsFocus(false)}
+                        onChange={item => {
+                            setValue(item.value);
+                            setIsFocus(false)
+                            console.log(item.value)
+                        }}
+                    />
+                </Container>
+                <Container>
+                    <SectionList
+                        sections={data}
+                        scrollEnabled={false}
+                        renderItem={({ item }) => (
+                            <View style={styles.itemRow}>
+                                <Text style={styles.itemText}>{item}</Text>
+                            </View>
+                        )}
+                        renderSectionHeader={({ section: { title } }) => (
+                            <View style={styles.headerRow}>
+                                <Text style={styles.headerText}>{title}</Text>
+                            </View>
+                        )}
+                        keyExtractor={(item, index) => item + index}
+                    />
+                </Container>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    image:{
+    image: {
         width: '100%',
         height: '100%',
         objectFit: 'contain'

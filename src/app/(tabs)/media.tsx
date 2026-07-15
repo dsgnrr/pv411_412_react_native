@@ -3,6 +3,7 @@ import { useAudioPlayer } from 'expo-audio'
 import { useVideoPlayer, VideoView } from "expo-video";
 import { StyleSheet, View, TouchableOpacity, Text, ScrollView } from "react-native";
 import { Container } from "@/components/ui/container";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const MediaScreen = () => {
     const [currentVideo, setCurrentVideo] = useState(0)
@@ -20,34 +21,36 @@ const MediaScreen = () => {
     })
 
     return (
-        <ScrollView>
-            <Container style={{ height: 500, paddingVertical: 15, gap: 2 }}>
-                <VideoView style={styles.video} player={player} allowsPictureInPicture />
-                <TouchableOpacity style={[styles.nextButton,{
-                    height: '10%',
-                }]} onPress={async () => {
+        <SafeAreaView>
+            <ScrollView>
+                <Container style={{ height: 500, paddingVertical: 15, gap: 2 }}>
+                    <VideoView style={styles.video} player={player} allowsPictureInPicture />
+                    <TouchableOpacity style={[styles.nextButton, {
+                        height: '10%',
+                    }]} onPress={async () => {
 
-                    await player.replaceAsync(videos[currentVideo + 1])
-                    setCurrentVideo(currentVideo + 1)
-                    if (currentVideo + 1 === videos.length) {
-                        setCurrentVideo(0)
-                    }
-                }}>
-                    <Text style={styles.nextButtonText}>Next</Text>
-                </TouchableOpacity>
-            </Container>
-            <Container>
-                <TouchableOpacity style={[styles.nextButton, {backgroundColor:"#268844", marginVertical: 5}]} onPress={()=>{
-                    audioPlayer.seekTo(0)
-                    audioPlayer.play();
+                        await player.replaceAsync(videos[currentVideo + 1])
+                        setCurrentVideo(currentVideo + 1)
+                        if (currentVideo + 1 === videos.length) {
+                            setCurrentVideo(0)
+                        }
                     }}>
-                    <Text style={styles.nextButtonText}>Play</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.nextButton, {backgroundColor:"#af5252"}]} onPress={()=>audioPlayer.pause()}>
-                    <Text style={styles.nextButtonText}>Stop</Text>
-                </TouchableOpacity>
-            </Container>
-        </ScrollView>
+                        <Text style={styles.nextButtonText}>Next</Text>
+                    </TouchableOpacity>
+                </Container>
+                <Container>
+                    <TouchableOpacity style={[styles.nextButton, { backgroundColor: "#268844", marginVertical: 5 }]} onPress={() => {
+                        audioPlayer.seekTo(0)
+                        audioPlayer.play();
+                    }}>
+                        <Text style={styles.nextButtonText}>Play</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.nextButton, { backgroundColor: "#af5252" }]} onPress={() => audioPlayer.pause()}>
+                        <Text style={styles.nextButtonText}>Stop</Text>
+                    </TouchableOpacity>
+                </Container>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

@@ -1,8 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { ScrollView, View, Text, StyleSheet, Animated, TouchableOpacity } from 'react-native';
+import { Drawer } from "expo-router/drawer";
+import { useNavigation } from "expo-router";
+import { DrawerNavigationProp } from "expo-router/drawer";
 import { Container } from "@/components/ui/container";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Entypo from '@expo/vector-icons/Entypo';
 
 const AnimateScreen = () => {
+    const navigation = useNavigation<DrawerNavigationProp<any>>();
+
 
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -14,6 +21,44 @@ const AnimateScreen = () => {
 
     // Анімація рамки у Fade animation
     const fadeBoxColorAnim = useRef(new Animated.Value(0)).current;
+
+    const jumpAnim = useRef(new Animated.Value(0)).current;
+    const suspenseAnim = useRef(new Animated.Value(1)).current;
+
+    useEffect(()=>{
+        const listenerId = fadeAnim.addListener(({value})=>{
+            console.log('Current value "fadeAnimation": ', value);
+
+            if( value>=0.5){
+                console.log("Animation complete in 50%");
+            }
+        });
+
+        return()=>{
+            fadeAnim.removeListener(listenerId);
+        }
+    },[])
+
+    const comboAnimation = () => {
+        jumpAnim.setValue(0);
+        suspenseAnim.setValue(1);
+
+        Animated.sequence([
+            Animated.timing(jumpAnim, { toValue: -100, duration: 400, useNativeDriver: true }),
+            Animated.timing(jumpAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
+
+            Animated.parallel([
+                Animated.timing(jumpAnim, { toValue: -20, duration: 200, useNativeDriver: true }),
+                Animated.timing(suspenseAnim, { toValue: 0, duration: 500, useNativeDriver: true }),
+            ])
+        ]).start(({finished})=>{
+            if(finished){
+                console.log("Ball animation is complete");
+                jumpAnim.setValue(0);
+                suspenseAnim.setValue(1);
+            }
+        });
+    }
 
     const animate = (toValue: number, animateValue: Animated.Value, duration = 3000, useNativeDriver = true) => {
         Animated.timing(animateValue, {
@@ -55,6 +100,13 @@ const AnimateScreen = () => {
     */
 
     return (
+        <SafeAreaView>
+            <View style={[styles.header]}>
+                <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+                    <Entypo name="menu" size={24} color="black" />
+                </TouchableOpacity>
+                <Text style={styles.headerText}>Header</Text>
+            </View>
         <ScrollView>
             <Container>
                 <Text style={styles.headerText}>Fade animation</Text>
@@ -114,11 +166,40 @@ const AnimateScreen = () => {
                 </View>
             </Container>
 
+            <Container>
+                <Text style={styles.headerText}>Combo animation</Text>
+                <Animated.View style={[styles.ball, {
+                    opacity: suspenseAnim,
+                    transform: [{ translateY: jumpAnim }]
+                }]} />
+                <View style={{ flexDirection: 'row', gap: 3 }}>
+                    <TouchableOpacity onPress={() => comboAnimation()} style={[styles.buttonBase, { backgroundColor: "#a03064", marginVertical: 5 }]}>
+                        <Text style={styles.buttonText}>Play ball animation</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        jumpAnim.setValue(0);
+                        suspenseAnim.setValue(1);
+                    }} style={[styles.buttonBase, { backgroundColor: "#611e3d", marginVertical: 5 }]}>
+                        <Text style={styles.buttonText}>View ball</Text>
+                    </TouchableOpacity>
+                </View>
+            </Container>
+            <Container style={{height: 500}}/>
         </ScrollView>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    header:{
+        height: 60,
+        flexDirection: 'row',
+        alignItems:'center',
+        // justifyContent: 'space-between',
+        paddingHorizontal: 16,
+        backgroundColor: '#e9e5e5',
+        gap: 10,
+    },
     headerText: {
         textAlign: 'center',
         marginVertical: 10,
@@ -162,6 +243,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         textTransform: "uppercase"
+    },
+    ball: {
+        width: 60,
+        height: 60,
+        backgroundColor: '#104fa1',
+        borderRadius: 30
     }
 })
 

@@ -14,7 +14,7 @@ import {
     from "react-native";
 
 import { useState } from "react";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface Item {
     id: string,
@@ -22,7 +22,6 @@ interface Item {
 }
 
 const HomeScreen = () => {
-
     const data: Item[] = [
         { id: '1', title: "item1" },
         { id: '2', title: "item2" },
@@ -43,123 +42,126 @@ const HomeScreen = () => {
         
         <div>Text</div>
          */
-        <ScrollView>
-            <View style={styles.mainContainer}>
-                <Text style={styles.welcomeText}>Welcome to React Native</Text>
-                <View style={styles.containerBase}>
-                    <Text style={styles.headerText}>Buttons</Text>
+        <SafeAreaView>
+            <ScrollView>
 
-                    <Button
-                        title="Button(Android)"
-                        color="#722b48"
-                        onPress={() => Alert.alert('Warning⚠️', 'You tapped this button', [
-                            {
-                                text: 'Ok',
-                                onPress: () => ToastAndroid.showWithGravityAndOffset("You select: OK", ToastAndroid.LONG, ToastAndroid.BOTTOM, 1, 2),
-                                style: 'default'
-                            },
-                            {
-                                text: 'Cancel',
-                                onPress: () => ToastAndroid.show("You pressed: CANCEL", ToastAndroid.LONG),
-                                style: 'cancel'
-                            }
-                        ])}
-                    />
-                    <TouchableOpacity style={styles.touchable} touchSoundDisabled={true} onPress={() => console.log("Touchable press")}
-                        onLongPress={() => setInterv(
-                            setInterval(() => console.log("Button still pressed"), 1000)
-                        )}
-                        onPressOut={() => interval !== 0 ? clearInterval(interval) : console.log()}
-                    >
-                        <Text style={styles.touchableText}>Touchable</Text>
-                        {/* <Button title="Button in button"
+                <View style={styles.mainContainer}>
+                    <Text style={styles.welcomeText}>Welcome to React Native</Text>
+                    <View style={styles.containerBase}>
+                        <Text style={styles.headerText}>Buttons</Text>
+
+                        <Button
+                            title="Button(Android)"
+                            color="#722b48"
+                            onPress={() => Alert.alert('Warning⚠️', 'You tapped this button', [
+                                {
+                                    text: 'Ok',
+                                    onPress: () => ToastAndroid.showWithGravityAndOffset("You select: OK", ToastAndroid.LONG, ToastAndroid.BOTTOM, 1, 2),
+                                    style: 'default'
+                                },
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => ToastAndroid.show("You pressed: CANCEL", ToastAndroid.LONG),
+                                    style: 'cancel'
+                                }
+                            ])}
+                        />
+                        <TouchableOpacity style={styles.touchable} touchSoundDisabled={true} onPress={() => console.log("Touchable press")}
+                            onLongPress={() => setInterv(
+                                setInterval(() => console.log("Button still pressed"), 1000)
+                            )}
+                            onPressOut={() => interval !== 0 ? clearInterval(interval) : console.log()}
+                        >
+                            <Text style={styles.touchableText}>Touchable</Text>
+                            {/* <Button title="Button in button"
                     color="#ad8a18"
                     onPress={()=>console.log("Button in button")}
                 />  */}
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
-                    <Pressable style={({ pressed }) => [
-                        styles.pressableBase,
-                        pressed ? styles.pressablePressed : styles.presableDefault
-                    ]} onPress={() => console.log("Pressable was tapped")}>
-                        <Text style={styles.touchableText}>Pressable</Text>
-                    </Pressable>
-                </View>
-                <View style={styles.containerBase}>
-                     <Text style={styles.headerText}>Inputs</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Type something"
-                        onChangeText={setText}
-                        value={text}
-                        placeholderTextColor="#999"
-                    />
-                    <Text style={{ color: 'gray', fontSize: 16 }}>&gt; {text}</Text>
-
-                </View>
-                <View style={styles.flexContainer}>
-                    <Text style={styles.headerText}>Flex</Text>
-                    {Array.from({ length: 48 }, (_, i) => i).map((v, i) => (
-                        <View key={i} style={styles.card}>
-                            <Text style={{
-                                color: 'white',
-                                fontSize: 12,
-                                fontWeight: 'bold',
-                                letterSpacing: 3
-                            }}>{i}#card</Text>
-                        </View>
-                    ))}
-                    <View style={styles.card}>
-                        <View style={{
-                            paddingVertical: 5,
-                            backgroundColor: "#26395c",
-                            width: '60%',
-                            height: '50%',
-                            borderTopLeftRadius: 6,
-                            borderTopRightRadius: 6
-                        }}></View>
+                        <Pressable style={({ pressed }) => [
+                            styles.pressableBase,
+                            pressed ? styles.pressablePressed : styles.presableDefault
+                        ]} onPress={() => console.log("Pressable was tapped")}>
+                            <Text style={styles.touchableText}>Pressable</Text>
+                        </Pressable>
                     </View>
+                    <View style={styles.containerBase}>
+                        <Text style={styles.headerText}>Inputs</Text>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Type something"
+                            onChangeText={setText}
+                            value={text}
+                            placeholderTextColor="#999"
+                        />
+                        <Text style={{ color: 'gray', fontSize: 16 }}>&gt; {text}</Text>
 
-                    {/* <View style={styles.card}>
+                    </View>
+                    <View style={styles.flexContainer}>
+                        <Text style={styles.headerText}>Flex</Text>
+                        {Array.from({ length: 48 }, (_, i) => i).map((v, i) => (
+                            <View key={i} style={styles.card}>
+                                <Text style={{
+                                    color: 'white',
+                                    fontSize: 12,
+                                    fontWeight: 'bold',
+                                    letterSpacing: 3
+                                }}>{i}#card</Text>
+                            </View>
+                        ))}
+                        <View style={styles.card}>
+                            <View style={{
+                                paddingVertical: 5,
+                                backgroundColor: "#26395c",
+                                width: '60%',
+                                height: '50%',
+                                borderTopLeftRadius: 6,
+                                borderTopRightRadius: 6
+                            }}></View>
+                        </View>
+
+                        {/* <View style={styles.card}>
                     <Text style={{
                         color: 'white',
                         fontSize: 12,
                         fontWeight: 'bold'
                     }}>1</Text>
                 </View> */}
-                </View>
+                    </View>
 
-                <View style={styles.containerBase}>
-                     <Text style={styles.headerText}>Flat list</Text>
-                    <FlatList
-                        data={data}
-                        keyExtractor={item => item.id}
-                        renderItem={({ item }) => (
-                            <View style={styles.listItem}>
-                                <Text style={styles.listItemText}>{item.title}</Text>
-                            </View>
-                        )}
-                        scrollEnabled={false}
-                        ListEmptyComponent={
-                            <Text
-                                style={{
-                                    textAlign: 'center',
-                                    marginTop: 50,
-                                    color: '#8e8e93',
-                                    fontSize: 16
-                                }}
-                            >List is empty</Text>
-                        }
-                    />
-                </View>
+                    <View style={styles.containerBase}>
+                        <Text style={styles.headerText}>Flat list</Text>
+                        <FlatList
+                            data={data}
+                            keyExtractor={item => item.id}
+                            renderItem={({ item }) => (
+                                <View style={styles.listItem}>
+                                    <Text style={styles.listItemText}>{item.title}</Text>
+                                </View>
+                            )}
+                            scrollEnabled={false}
+                            ListEmptyComponent={
+                                <Text
+                                    style={{
+                                        textAlign: 'center',
+                                        marginTop: 50,
+                                        color: '#8e8e93',
+                                        fontSize: 16
+                                    }}
+                                >List is empty</Text>
+                            }
+                        />
+                    </View>
 
-            </View>
-        </ScrollView>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    headerText:{
+    headerText: {
         textAlign: 'center',
         marginVertical: 10,
         fontSize: 20,
