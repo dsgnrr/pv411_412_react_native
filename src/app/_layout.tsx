@@ -11,6 +11,10 @@ const RootLayout = ()=>{
             <SafeAreaProvider>
                 <Stack>
                     <Stack.Screen name="(tabs)" options={{headerShown:false}}/>
+                    <Stack.Screen name="product_modal" options={{
+                        presentation: 'modal',
+                        headerShown: false
+                    }}/>
                 </Stack>
             </SafeAreaProvider>
     )
