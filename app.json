@@ -3,7 +3,7 @@
     "name": "React Native Lessons",
     "slug": "react_native_lessons",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/ourIcon/our_icon.png",
     "scheme": "pv411412reactnative",
     "userInterfaceStyle": "automatic",

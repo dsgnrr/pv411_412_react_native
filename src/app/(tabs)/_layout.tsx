@@ -6,6 +6,7 @@ import { Drawer, DrawerContentComponentProps, DrawerContentScrollView, DrawerIte
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const DrawerContent = (props: DrawerContentComponentProps)=>{
     return(
@@ -33,7 +34,7 @@ const TabLayout = () => {
                 headerShown: false,
                 drawerStyle:{
                     backgroundColor: '#fff',
-                    width: 250,
+                    width: '70%',
                     // borderWidth: 0,
                     borderColor: "#1f1f1f",
                     borderRadius: 0,
@@ -79,6 +80,13 @@ const TabLayout = () => {
                     options={{
                         drawerLabel:'Animation',
                         drawerIcon: ({color, size})=> <MaterialCommunityIcons name="animation" size={size} color={color} />
+                    }}
+                />
+                <Drawer.Screen
+                    name="dimension"
+                    options={{
+                        drawerLabel:'Dimension',
+                        drawerIcon: ({color, size})=> <MaterialIcons name="screen-rotation" size={size} color={color} />
                     }}
                 />
             </Drawer>
