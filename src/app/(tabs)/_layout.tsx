@@ -8,6 +8,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
+
 const DrawerContent = (props: DrawerContentComponentProps)=>{
     return(
         
@@ -87,6 +88,13 @@ const TabLayout = () => {
                     options={{
                         drawerLabel:'Dimension',
                         drawerIcon: ({color, size})=> <MaterialIcons name="screen-rotation" size={size} color={color} />
+                    }}
+                />
+                <Drawer.Screen
+                    name="keyboard"
+                    options={{
+                        drawerLabel:'Keyboard',
+                        drawerIcon: ({color, size})=> <Entypo name="keyboard" size={size} color={color} />
                     }}
                 />
             </Drawer>
