@@ -7,6 +7,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 
 const DrawerContent = (props: DrawerContentComponentProps)=>{
@@ -95,6 +96,13 @@ const TabLayout = () => {
                     options={{
                         drawerLabel:'Keyboard',
                         drawerIcon: ({color, size})=> <Entypo name="keyboard" size={size} color={color} />
+                    }}
+                />
+                <Drawer.Screen
+                    name="contacts"
+                    options={{
+                        drawerLabel:'Contacts',
+                        drawerIcon: ({color, size})=> <FontAwesome6 name="contact-book" size={size} color={color} />
                     }}
                 />
             </Drawer>
