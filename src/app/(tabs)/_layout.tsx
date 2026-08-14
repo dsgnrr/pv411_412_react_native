@@ -8,7 +8,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-
+// import "../../global.css";
 
 const DrawerContent = (props: DrawerContentComponentProps)=>{
     return(

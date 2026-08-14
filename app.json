@@ -11,9 +11,11 @@
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.pv412411.rncourses",
       "permissions": [
         "android.permission.READ_CONTACTS",
-        "android.permission.WRITE_CONTACTS"
+        "android.permission.WRITE_CONTACTS",
+        "android.permission.POST_NOTIFICATIONS"
       ],
       "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
@@ -26,7 +28,8 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router",
@@ -42,7 +45,14 @@
       "expo-audio",
       "expo-image",
       "expo-status-bar",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+      "expo-notifications",
+      {
+        "icon":"./assets/images/favicon.png",
+        "color":"#6d0d31f5"
+      }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
