@@ -47,12 +47,13 @@
       "expo-status-bar",
       "expo-web-browser",
       [
-      "expo-notifications",
-      {
-        "icon":"./assets/images/favicon.png",
-        "color":"#6d0d31f5"
-      }
-      ]
+        "expo-notifications",
+        {
+          "icon": "./assets/images/favicon.png",
+          "color": "#6d0d31f5"
+        }
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true,

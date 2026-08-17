@@ -33,7 +33,7 @@ const TabLayout = () => {
             screenOptions={{
                 swipeEnabled: true,
                 swipeEdgeWidth: 100,
-                headerShown: false,
+                headerShown: true,
                 drawerStyle:{
                     backgroundColor: '#fff',
                     width: '70%',
