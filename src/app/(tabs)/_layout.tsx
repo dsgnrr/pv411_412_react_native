@@ -1,7 +1,4 @@
-import { Tabs } from "expo-router";
 import { Text, View } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer, DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList } from "expo-router/drawer";
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -10,12 +7,12 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 // import "../../global.css";
 
-const DrawerContent = (props: DrawerContentComponentProps)=>{
-    return(
-        
-        <View style={{flex:1, marginTop: 60, marginBottom: 60, padding: 5}}>
-            <DrawerContentScrollView {...props} contentContainerStyle={{paddingTop:0}}>
-                <DrawerItemList{...props}/>
+const DrawerContent = (props: DrawerContentComponentProps) => {
+    return (
+
+        <View style={{ flex: 1, marginTop: 60, marginBottom: 60, padding: 5 }}>
+            <DrawerContentScrollView {...props} contentContainerStyle={{ paddingTop: 0 }}>
+                <DrawerItemList{...props} />
             </DrawerContentScrollView>
             <Text>React Native Lessons</Text>
             <Text>2026</Text>
@@ -26,15 +23,13 @@ const DrawerContent = (props: DrawerContentComponentProps)=>{
 
 const TabLayout = () => {
     return (
-         <SafeAreaProvider>
-        <GestureHandlerRootView style={{flex: 1}}>
-            <Drawer
-            drawerContent={(props)=><DrawerContent {...props}/>}
+        <Drawer
+            drawerContent={(props) => <DrawerContent {...props} />}
             screenOptions={{
                 swipeEnabled: true,
                 swipeEdgeWidth: 100,
                 headerShown: true,
-                drawerStyle:{
+                drawerStyle: {
                     backgroundColor: '#fff',
                     width: '70%',
                     // borderWidth: 0,
@@ -47,67 +42,66 @@ const TabLayout = () => {
                 },
                 drawerActiveTintColor: '#4b182d',
                 drawerActiveBackgroundColor: '#f19ec2',
-                drawerItemStyle:{
+                drawerItemStyle: {
                     borderRadius: 0,
                     margin: 0
                 }
             }}
-            >
-                <Drawer.Screen
-                    name="index"
-                    options={{
-                        drawerLabelStyle:{
-                            borderRadius: 0
-                        },
-                        drawerLabel:'Home',
-                        drawerIcon: ({color, size})=> <Entypo name="home" size={size} color={color} />
-                    }}
-                />
-                <Drawer.Screen
-                    name="lists"
-                    options={{
-                        drawerLabel:'Lists',
-                        drawerIcon: ({color, size})=> <FontAwesome name="list" size={size} color={color} />
-                    }}
-                />
-                <Drawer.Screen
-                    name="media"
-                    options={{
-                        drawerLabel:'Media',
-                        drawerIcon: ({color, size})=> <MaterialCommunityIcons name="multimedia" size={size} color={color} />
-                    }}
-                />
-                <Drawer.Screen
-                    name="animation"
-                    options={{
-                        drawerLabel:'Animation',
-                        drawerIcon: ({color, size})=> <MaterialCommunityIcons name="animation" size={size} color={color} />
-                    }}
-                />
-                <Drawer.Screen
-                    name="dimension"
-                    options={{
-                        drawerLabel:'Dimension',
-                        drawerIcon: ({color, size})=> <MaterialIcons name="screen-rotation" size={size} color={color} />
-                    }}
-                />
-                <Drawer.Screen
-                    name="keyboard"
-                    options={{
-                        drawerLabel:'Keyboard',
-                        drawerIcon: ({color, size})=> <Entypo name="keyboard" size={size} color={color} />
-                    }}
-                />
-                <Drawer.Screen
-                    name="contacts"
-                    options={{
-                        drawerLabel:'Contacts',
-                        drawerIcon: ({color, size})=> <FontAwesome6 name="contact-book" size={size} color={color} />
-                    }}
-                />
-            </Drawer>
-        </GestureHandlerRootView>
-        </SafeAreaProvider>
+        >
+            <Drawer.Screen
+                name="index"
+                options={{
+                    drawerLabelStyle: {
+                        borderRadius: 0
+                    },
+                    drawerLabel: 'Home',
+                    drawerIcon: ({ color, size }) => <Entypo name="home" size={size} color={color} />
+                }}
+            />
+            <Drawer.Screen
+                name="lists"
+                options={{
+                    drawerLabel: 'Lists',
+                    drawerIcon: ({ color, size }) => <FontAwesome name="list" size={size} color={color} />
+                }}
+            />
+            <Drawer.Screen
+                name="media"
+                options={{
+                    drawerLabel: 'Media',
+                    drawerIcon: ({ color, size }) => <MaterialCommunityIcons name="multimedia" size={size} color={color} />
+                }}
+            />
+            <Drawer.Screen
+                name="animation"
+                options={{
+                    drawerLabel: 'Animation',
+                    drawerIcon: ({ color, size }) => <MaterialCommunityIcons name="animation" size={size} color={color} />
+                }}
+            />
+            <Drawer.Screen
+                name="dimension"
+                options={{
+                    drawerLabel: 'Dimension',
+                    drawerIcon: ({ color, size }) => <MaterialIcons name="screen-rotation" size={size} color={color} />
+                }}
+            />
+            <Drawer.Screen
+                name="keyboard"
+                options={{
+                    drawerLabel: 'Keyboard',
+                    drawerIcon: ({ color, size }) => <Entypo name="keyboard" size={size} color={color} />
+                }}
+            />
+            <Drawer.Screen
+                name="contacts"
+                options={{
+                    drawerLabel: 'Contacts',
+                    drawerIcon: ({ color, size }) => <FontAwesome6 name="contact-book" size={size} color={color} />
+                }}
+            />
+        </Drawer>
+
         // <Tabs screenOptions={{
         //     tabBarActiveTintColor: '#91345b',
         //     headerStyle: {

@@ -11,7 +11,6 @@
       "icon": "./assets/expo.icon"
     },
     "android": {
-      "package": "com.pv412411.rncourses",
       "permissions": [
         "android.permission.READ_CONTACTS",
         "android.permission.WRITE_CONTACTS",
@@ -53,7 +52,8 @@
           "color": "#6d0d31f5"
         }
       ],
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
