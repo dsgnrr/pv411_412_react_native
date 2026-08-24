@@ -23,10 +23,10 @@ interface Product {
 const DimensionScreen = () => {
 
     const images = [
-        require(`../../../assets/images/products/1.png`),
-        require(`../../../assets/images/products/2.jpg`),
-        require(`../../../assets/images/products/3.jpg`),
-        require(`../../../assets/images/products/4.jpg`),
+        require(`@/assets/images/products/1.png`),
+        require(`@/assets/images/products/2.jpg`),
+        require(`@/assets/images/products/3.jpg`),
+        require(`@/assets/images/products/4.jpg`),
     ]
     const products: Product[] = [
         {

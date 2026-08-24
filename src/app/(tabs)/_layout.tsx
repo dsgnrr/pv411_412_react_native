@@ -65,13 +65,13 @@ const TabLayout = () => {
                     drawerIcon: ({ color, size }) => <FontAwesome name="list" size={size} color={color} />
                 }}
             />
-            <Drawer.Screen
+            {/* <Drawer.Screen
                 name="media"
                 options={{
                     drawerLabel: 'Media',
                     drawerIcon: ({ color, size }) => <MaterialCommunityIcons name="multimedia" size={size} color={color} />
                 }}
-            />
+            /> */}
             <Drawer.Screen
                 name="animation"
                 options={{

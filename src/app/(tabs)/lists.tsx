@@ -65,7 +65,7 @@ const ListScreen = () => {
                 <Container style={{
                     height: 250
                 }}>
-                    <Image style={styles.image} source={require('../../../assets/images/tutorial-web.png')} />
+                    <Image style={styles.image} source={require('@/assets/images/tutorial-web.png')} />
                 </Container>
                 <Container>
                     <View style={{

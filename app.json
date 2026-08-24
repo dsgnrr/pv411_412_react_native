@@ -8,13 +8,22 @@
     "scheme": "pv411412reactnative",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.pv412411.rncourses",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "com.pv412411.rncourses",
       "permissions": [
         "android.permission.READ_CONTACTS",
         "android.permission.WRITE_CONTACTS",
-        "android.permission.POST_NOTIFICATIONS"
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ],
       "softwareKeyboardLayoutMode": "resize",
       "adaptiveIcon": {
@@ -45,19 +54,18 @@
       "expo-image",
       "expo-status-bar",
       "expo-web-browser",
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/images/favicon.png",
-          "color": "#6d0d31f5"
-        }
-      ],
       "expo-sqlite",
       "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "057cd3fb-d23b-41c9-ac6c-ccc68bcf7d80"
+      }
     }
   }
 }

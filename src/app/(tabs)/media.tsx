@@ -7,12 +7,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const MediaScreen = () => {
     const [currentVideo, setCurrentVideo] = useState(0)
-    const audioPlayer = useAudioPlayer(require('../../../assets/audio/audio.mp3'))
+    const audioPlayer = useAudioPlayer(require('@/assets/audio/audio.mp3'))
     const videos = [
-        require(`../../../assets/videos/cat1.mp4`),
-        require(`../../../assets/videos/cat2.mp4`),
-        require(`../../../assets/videos/cat3.mp4`),
-        require(`../../../assets/videos/cat4.mp4`),
+        require(`@/assets/videos/cat1.mp4`),
+        require(`@/assets/videos/cat2.mp4`),
+        require(`@/assets/videos/cat3.mp4`),
+        require(`@/assets/videos/cat4.mp4`),
     ]
 
 
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MediaScreen;
+// export default MediaScreen;
