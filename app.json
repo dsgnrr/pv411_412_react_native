@@ -49,6 +49,13 @@
           "imageWidth": 76
         }
       ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/favicon.png",
+          "color": "#6d0d31f5"
+        }
+      ],
       "expo-video",
       "expo-audio",
       "expo-image",

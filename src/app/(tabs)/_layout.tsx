@@ -5,6 +5,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import Ionicons from '@expo/vector-icons/Ionicons';
 // import "../../global.css";
 
 const DrawerContent = (props: DrawerContentComponentProps) => {
@@ -98,6 +99,13 @@ const TabLayout = () => {
                 options={{
                     drawerLabel: 'Contacts',
                     drawerIcon: ({ color, size }) => <FontAwesome6 name="contact-book" size={size} color={color} />
+                }}
+            />
+            <Drawer.Screen
+                name="notification"
+                options={{
+                    drawerLabel: 'Notify',
+                    drawerIcon: ({ color, size }) => <Ionicons name="notifications" size={size} color={color} />
                 }}
             />
         </Drawer>
